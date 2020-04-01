@@ -14,7 +14,7 @@ pipelineTriggers([pollSCM('* * * * *')])
 }
 		stage("Install Prerequisites"){
 		sh """
-		ssh centos@jenkins_worker1.acirrustech.com                 sudo yum install httpd -y
+		ssh centos@jenkins_worker1.otabeks.com                 sudo yum install httpd -y
 		
 		"""
 }
@@ -22,11 +22,11 @@ pipelineTriggers([pollSCM('* * * * *')])
 }
 	stage("Copy artifacts"){
 		sh """
-		scp -r *  centos@jenkins_worker1.acirrustech.com:/tmp
-		ssh centos@jenkins_worker1.acirrustech.com                 sudo cp -r /tmp/index.html /var/www/html/
-		ssh centos@jenkins_worker1.acirrustech.com                 sudo cp -r /tmp/style.css /var/www/html/
-		ssh centos@jenkins_worker1.acirrustech.com				   sudo chown centos:centos /var/www/html/
-		ssh centos@jenkins_worker1.acirrustech.com				   sudo chmod 777 /var/www/html/*
+		scp -r *  centos@jenkins_worker1.otabeks.com:/tmp
+		ssh centos@jenkins_worker1.otabeks.com                 sudo cp -r /tmp/index.html /var/www/html/
+		ssh centos@jenkins_worker1.otabeks.com                 sudo cp -r /tmp/style.css /var/www/html/
+		ssh centos@jenkins_worker1.otabeks.com				   sudo chown centos:centos /var/www/html/
+		ssh centos@jenkins_worker1.otabeks.com				   sudo chmod 777 /var/www/html/*
 		"""
 }
 	stage("Restart web server"){
